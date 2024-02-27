@@ -1,0 +1,59 @@
+{
+  "name": "next-fastify",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "concurrently npm:build:*",
+    "build:next": "next build",
+    "build:fastify-cluster": "./node_modules/.bin/esbuild ./index.ts --bundle --define:process.env.NODE_ENV=\\\"production\\\" --minify --minify-syntax --outfile=./fastify-build/index.cjs --format=cjs --external:next --platform=node",
+    "db:push": "drizzle-kit push:pg",
+    "db:studio": "drizzle-kit studio",
+    "dev": "echo \"\\033[1mBefore deploying always test a build locally\\033[0m \n\n\" && sleep 2 && next dev",
+    "lint": "next lint",
+    "start": "node ./fastify-build/index.cjs"
+  },
+  "dependencies": {
+    "@auth/drizzle-adapter": "^0.7.0",
+    "@t3-oss/env-nextjs": "^0.9.2",
+    "@tanstack/react-query": "^4.36.1",
+    "@trpc/client": "^10.45.1",
+    "@trpc/next": "^10.45.1",
+    "@trpc/react-query": "^10.45.1",
+    "@trpc/server": "^10.45.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.29.4",
+    "fastify": "^4.26.1",
+    "next": "^14.1.0",
+    "next-auth": "^4.24.6",
+    "postgres": "^3.4.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "server-only": "^0.0.1",
+    "superjson": "^2.2.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "@types/dotenv": "^8.2.0",
+    "esbuild": "^0.20.1",
+    "@types/eslint": "^8.56.2",
+    "@types/node": "^20.11.20",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "drizzle-kit": "^0.20.14",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "pg": "^8.11.3",
+    "postcss": "^8.4.34",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.27.0"
+  }
+}
